@@ -2,9 +2,9 @@ import sys
 import threading
 import time
 import os
-from clib.winutils.process import enable_privilege,run_admin
-from clib.winutils.python_loader import run_script
-from clib.process import Process
+from nylib.winutils.process import enable_privilege,run_admin
+from nylib.winutils.python_loader import run_script
+from nylib.process import Process
 
 
 def close_process_after_delay():

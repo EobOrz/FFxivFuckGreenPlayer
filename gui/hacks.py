@@ -1,6 +1,6 @@
-from clib.hook import create_hook
-from clib.process import Process
-from clib.winutils import enable_privilege
+from nylib.hook import create_hook
+from nylib.process import Process
+from nylib.winutils import enable_privilege
 from .utils import Commander,CommandObserver
 
 import ctypes

@@ -4,7 +4,7 @@ import threading
 import traceback
 import contextlib
 from pynput import keyboard
-from clib.winutils.pipe_rpc import RpcServer
+from nylib.winutils.pipe_rpc import RpcServer
 from .hacks import GrandCompany,ShopQuantity,MovePermission,AntiKnock,GetActionRange,NoBackswing,Speed
 from .hacks import PassWall,ExecuteCommand,AnimLock,NoActionMove
 from .utils import Campeng,FallCheckPatch,NoRender
@@ -33,8 +33,8 @@ no_render = NoRender()
 no_action_move = NoActionMove()
 def main():
 
-    from clib.hook import create_hook
-    from clib.process import Process
+    from nylib.hook import create_hook
+    from nylib.process import Process
     import ctypes.wintypes
     if ctypes.windll.kernel32.GetModuleHandleW('d3d11.dll'):
         mode = "Dx11"

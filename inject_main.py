@@ -7,18 +7,18 @@ import requests
 import wmi
 import json
 import tkinter as tk
-from clib.hook import create_hook
-from clib.winutils import enable_privilege
-from clib.process import Process
+from nylib.hook import create_hook
+from nylib.winutils import enable_privilege
+from nylib.process import Process
 from gui.guicopy import start_gui
 import time
 
 import sys
 import time
 import os
-from clib.winutils.process import enable_privilege,run_admin
-from clib.winutils.python_loader import run_script
-from clib.process import Process
+from nylib.winutils.process import enable_privilege,run_admin
+from nylib.winutils.python_loader import run_script
+from nylib.process import Process
 
 
 def main():

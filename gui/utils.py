@@ -2,9 +2,9 @@ import os
 import sys
 #sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 # 现在可以安全地进行绝对导入
-from clib.hook import create_hook
-from clib.process import Process
-from clib.winutils import enable_privilege
+from nylib.hook import create_hook
+from nylib.process import Process
+from nylib.winutils import enable_privilege
 from pynput import keyboard
 import pyimgui
 import pyimgui.imgui as imgui
