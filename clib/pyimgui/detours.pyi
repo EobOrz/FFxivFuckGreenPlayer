@@ -1,0 +1,6 @@
+from __future__ import annotations
+__all__ = ['SimpleAttach', 'SimpleDetach']
+def SimpleAttach(arg0: int, arg1: int) -> int:
+    ...
+def SimpleDetach(arg0: int, arg1: int) -> int:
+    ...
