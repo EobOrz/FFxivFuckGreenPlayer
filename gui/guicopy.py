@@ -108,8 +108,9 @@ def main():
 
     def draw_func():
         global selected_tab
-        
         nonlocal last_io
+        anim_lock.run()
+
         last_io = imgui.GetIO()
         #imgui.GetIO().IniFilename = None
         if not datas.get('is_init', False):
@@ -203,6 +204,8 @@ def main():
                     imgui.PopStyleVar(3)
         except Exception as e:
             print(e)
+        
+    
 
     if mode == 'Dx11':
         wnd = Dx11Inbound(draw_func)

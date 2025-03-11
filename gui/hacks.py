@@ -2,7 +2,7 @@ from nylib.hook import create_hook
 from nylib.process import Process
 from nylib.winutils import enable_privilege
 from .utils import Commander,CommandObserver
-
+from nylib.utils.eventloop import EventLoop
 import ctypes
 import pyimgui
 import pyimgui.imgui as imgui
@@ -569,6 +569,8 @@ class AnimLock:
 
     def __init__(self):
         self.p = Process.current  # 假设您已经有了当前进程的引用
+        self.anim_lock_v = 0.3
+        self.inject = False
         try:
             # 使用内存扫描找到特定的指令模式
             self.anim_base = self.p.base_static_scanner().find_val("48 8D 0D * * * * F3 0F 10 13")[0] + 0x08   #anim lock
@@ -582,9 +584,26 @@ class AnimLock:
 
     
     def draw_panel(self):
+        if self.anim_base is not None:
         #print(f"{self.p.read_float(self.anim_base)}")
-        imgui.Text(f"{self.p.read_float(self.anim_base)}")
-        imgui.Text(f"{self.p.read_u16(self.anim_base1)}")
+            changed, new_val = imgui.Checkbox("AimLock", self.inject)
+            if changed: 
+                self.inject = new_val
+                if self.inject is True:
+                    print('Hook Install AimLock')
+                if self.inject is False:
+                    print('Hook Uninstall AimLock')  
+            if self.inject is True:
+                change,new_val2 = imgui.SliderFloat('AimLockSlider', self.anim_lock_v, 0, 1, '%.3f')
+                if change:
+                    self.anim_lock_v = new_val2
+                imgui.Text(f"{self.p.read_float(self.anim_base)}")
+                imgui.Text(f"{self.p.read_u16(self.anim_base1)}")
+        else:imgui.Text("AnimLock Path: error")
+
+    def run(self):  
+        if self.inject and Process.current.read_float(self.anim_base) > self.anim_lock_v:
+            self.p.current.write_float(self.anim_base,self.anim_lock_v)        
 
 
 
