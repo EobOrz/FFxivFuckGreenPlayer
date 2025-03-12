@@ -8,6 +8,7 @@ from nylib.winutils.pipe_rpc import RpcServer
 from .hacks import GrandCompany,ShopQuantity,MovePermission,AntiKnock,GetActionRange,NoBackswing,Speed
 from .hacks import PassWall,ExecuteCommand,AnimLock,NoActionMove
 from .utils import Campeng,FallCheckPatch,NoRender
+from .network import SendPacket
 import pathlib
 
 
@@ -31,6 +32,7 @@ campeng = Campeng()
 fall_check = FallCheckPatch()
 no_render = NoRender()
 no_action_move = NoActionMove()
+send_packet = SendPacket()
 def main():
 
     from nylib.hook import create_hook
@@ -196,7 +198,9 @@ def main():
                             elif selected_tab == "DevTools":
                                 execute_command.draw_panel() 
                                 anim_lock.draw_panel()
+                                send_packet.draw_panel()
                                 no_render.draw_panel()
+                                
                         imgui.EndChild()
 
                     # 结束窗口
