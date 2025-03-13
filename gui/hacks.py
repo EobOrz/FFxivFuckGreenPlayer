@@ -630,7 +630,9 @@ class NoActionMove:
         @create_hook(at=self.p_code, restype=ctypes.c_uint64, argtypes=[ctypes.c_uint64, ctypes.c_uint8, ctypes.c_uint64, ctypes.c_float, ctypes.POINTER(ctypes.c_uint16)])
         def hook(hook, a1, action_timeline_move_id, target_id, facing, p_action_timeline):
             #timeline = p_action_timeline.contents.value
-            block = True
+            a1 = 0
+            facing = 0
+            p_action_timeline = 0
             #for white in self.cfg.action_move_white_list:
             #    if white == 0:
             #        break
@@ -638,8 +640,8 @@ class NoActionMove:
             #        block = False
             #        break
             #if block:
-            return
-        return #hook
+            return hook.original(a1, action_timeline_move_id, target_id, facing, p_action_timeline)
+        return hook
 
     def draw_panel(self):
         if self.p_code is not None:

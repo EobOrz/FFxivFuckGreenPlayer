@@ -7,7 +7,7 @@ from pynput import keyboard
 from nylib.winutils.pipe_rpc import RpcServer
 from .hacks import GrandCompany,ShopQuantity,MovePermission,AntiKnock,GetActionRange,NoBackswing,Speed
 from .hacks import PassWall,ExecuteCommand,AnimLock,NoActionMove
-from .utils import Campeng,FallCheckPatch,NoRender
+from .utils import Campeng,FallCheckPatch,NoRender,LocalPlayer
 from .network import SendPacket
 import pathlib
 
@@ -17,7 +17,7 @@ color_theme_index = 2
 selected_tab = "Home"
 should_show_window = True
 
-
+local_player = LocalPlayer()
 grand_company = GrandCompany()
 shop_quantity = ShopQuantity()
 move_permission = MovePermission()
@@ -32,7 +32,9 @@ campeng = Campeng()
 fall_check = FallCheckPatch()
 no_render = NoRender()
 no_action_move = NoActionMove()
-send_packet = SendPacket()
+send_packet = SendPacket(local_player)
+
+
 def main():
 
     from nylib.hook import create_hook
@@ -112,7 +114,7 @@ def main():
         global selected_tab
         nonlocal last_io
         anim_lock.run()
-
+        local_player.get_whoiam()
         last_io = imgui.GetIO()
         #imgui.GetIO().IniFilename = None
         if not datas.get('is_init', False):
@@ -200,6 +202,8 @@ def main():
                                 anim_lock.draw_panel()
                                 send_packet.draw_panel()
                                 no_render.draw_panel()
+                                if local_player.execute_base != 0:
+                                    imgui.Text(f"{Process.current.read_u16(local_player.current_hp)} | {Process.current.read_u16(local_player.is_casting)}")
                                 
                         imgui.EndChild()
 

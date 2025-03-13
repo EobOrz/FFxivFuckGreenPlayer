@@ -226,3 +226,33 @@ class NoRender:
                 imgui.Text('F1 on')
         else:
             imgui.Text("NoRender Path: error")
+
+
+class LocalPlayer:
+    def __init__(self):
+        self.inject = False
+        self.p = Process.current     
+        self.execute_base = 0
+        self.current_hp = 0
+        self.max_hp = 0
+        self.current_mp = 0
+        self.max_mp = 0
+        self.cast_info_base_address = 0
+        self.is_casting = 0
+        # cn self.execute_base = self.p.base_static_scanner().find_address("e8 ? ? ? ? 45 ? ? ? 84 ? 0f 84 ? ? ? ? f3 ? ? ? ? ?")
+        try:
+            self.execute_base_1 = self.p.base_static_scanner().find_val("48 8B 2D * * * * 75")[0]
+            print(f"LocalPlayer: Succeed {self.execute_base}| {self.current_hp}|{self.current_mp}|{self.is_casting}")
+        except:
+            self.execute_base_1 = None
+            print("LocalPlayer: error")
+        #if self.execute_base is not None:  
+    def get_whoiam(self):
+        if self.execute_base_1 is not None:
+            self.execute_base = self.p.read_i64(self.execute_base_1) 
+            self.current_hp = self.execute_base + 0x1AC
+            self.max_hp = self.execute_base + 0x1B0
+            self.current_mp = self.execute_base + 0x1B4
+            self.max_mp = self.execute_base + 0x1B8
+            self.cast_info_base_address = self.execute_base + 0x2620
+            self.is_casting = self.cast_info_base_address + 1                
