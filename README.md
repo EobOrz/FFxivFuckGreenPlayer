@@ -1,5 +1,10 @@
 # FFxivPythonCheat
 
+<!-- 引入 Font Awesome 图标库 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+[<i class="fa-brands fa-discord"></i> 点击加入 Discord 服务器获取脚本更新资讯](https://discord.gg/sQYu5CkH)
+
 ```
 ███████╗██╗   ██╗ ██████╗██╗  ██╗    ███████╗███████╗██╗  ██╗██╗██╗   ██╗
 ██╔════╝██║   ██║██╔════╝██║ ██╔╝    ██╔════╝██╔════╝╚██╗██╔╝██║██║   ██║
