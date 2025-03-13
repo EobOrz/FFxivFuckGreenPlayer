@@ -25,7 +25,7 @@ ACT 不算开？卫月不算开？哟呵，那些个自诩只开不影响游戏�
 
 ## 在Releases处下载最新构建后 直接运行里面的BAT即可。
 - GrandCompany()    无视军衔交军票
-- ShopQuantity()    解除购买量限制
+- ShopQuantity()    解除购买量限制(新版本游戏内置)
 - MovePermission()  强制移动
 - AntiKnock()       防鸡腿
 - GetActionRange()  技能距离增加
